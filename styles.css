@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+h1 {
+  font-family: 'Poppins', sans-serif !important;
+  color: #005187 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+
+body, .slidev-layout {
+  font-family: 'Inter', sans-serif;
+}
+
+.prep-eyebrow {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #4d82bc;
+  background: #eaf2fd;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin-bottom: 0.8rem;
+}
+
+.slidev-layout ul {
+  list-style: none !important;
+  padding-left: 0 !important;
+}
+
+.slidev-layout ul li {
+  position: relative;
+  padding-left: 1.3rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.45;
+  font-size: 0.95rem;
+}
+
+.slidev-layout ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  background: #84b6f4;
+}
+
+.prep-divider {
+  color: #fcffff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Oscurece la imagen de portada.png para que el texto blanco siga siendo legible */
+.prep-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(5, 28, 51, 0.82) 0%, rgba(10, 51, 87, 0.72) 45%, rgba(18, 77, 120, 0.7) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.16) 1.5px, transparent 1.5px);
+  background-size: cover, 26px 26px;
+  pointer-events: none;
+}
+
+.prep-divider h1 {
+  color: #fcffff !important;
+  font-size: 2.5rem;
+  position: relative;
+}
+
+.prep-subtitle {
+  position: relative;
+  color: #c4dafa;
+  font-size: 1rem;
+  margin-top: 0.4rem;
+}
+
+.prep-cover {
+  position: relative;
+  color: #0a3357;
+  /* layout: image (a diferencia de layout: cover) no centra el
+     contenido verticalmente por sí solo, así que lo hacemos aquí */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  padding-left: 4rem;
+}
+
+.prep-cover .prep-subtitle {
+  color: #3f6a94;
+}
+
+.prep-cover .prep-nav-hint {
+  color: rgba(10, 51, 87, 0.55);
+  cursor: pointer;
+}
+
+.prep-cover .prep-nav-hint:hover {
+  color: rgba(10, 51, 87, 0.85);
+}
+
+/* Los logos vienen en blanco (pensados para fondo oscuro); se invierten */
+/* a tono oscuro (hue-rotate conserva el azul de la línea) sobre la portada clara. */
+.prep-logos {
+  filter: invert(1) hue-rotate(180deg);
+  opacity: 0.88;
+}
+
+.prep-step-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Bloques de código: la "imagen" de este deck.                        */
+/* Fondo oscuro (tema Dracula vía setup/shiki.ts) + marco con puntico  */
+/* de "ventana" para que se lea como un editor, no como texto plano.   */
+/* ------------------------------------------------------------------ */
+pre {
+  border-radius: 12px !important;
+  border: 1px solid #c4dafa !important;
+  box-shadow: 0 12px 28px rgba(0, 81, 135, 0.18);
+  padding-top: 2.2rem !important;
+  position: relative;
+}
+
+/* Fondo negro sólido (en vez del morado oscuro del tema Dracula de Shiki) */
+pre, pre.shiki, .shiki, .slidev-code-wrapper, .slidev-code-wrapper pre {
+  background-color: #000 !important;
+}
+
+pre::before {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 18px 0 0 #ffbd2e, 36px 0 0 #27c93f;
+}
+
+.slidev-code {
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* La regla propia de Slidev (.slidev-code { padding: 8px !important }) tiene */
+/* más especificidad que "pre" y le ganaba a nuestro padding-top, por eso las */
+/* bolitas de la ventana tapaban la primera línea de código. Con un selector  */
+/* más específico agregamos una línea en blanco de aire arriba del código.    */
+.slidev-code-wrapper .slidev-code {
+  padding-top: 2.6rem !important;
+}
+
+/* La caja de código crece según la cantidad de líneas en vez de recortar */
+/* con una barra de scroll interna (se ve mal). Las líneas largas hacen   */
+/* salto de línea en vez de generar scroll horizontal.                    */
+.slidev-code-wrapper,
+.slidev-code-wrapper pre,
+.slidev-code,
+.shiki,
+.shiki code {
+  max-height: none !important;
+  height: auto !important;
+  overflow: visible !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* Oculta la UI nativa de navegación de Slidev.                        */
+/* Sustituimos la barra de íconos + el buscador "Goto..." por un único  */
+/* número de página discreto, definido en global-bottom.vue.           */
+/* ------------------------------------------------------------------ */
+
+/* El diálogo "Goto..." (se abre con la tecla "g"): lo apagamos del     */
+/* todo para que nunca vuelva a aparecer, sin importar qué lo dispare.  */
+#slidev-goto-dialog {
+  display: none !important;
+}
+
+/* El botón de copiar código de Slidev solo aparece con :hover, así que en    */
+/* pantallas táctiles (sin estado hover) queda invisible y no se puede tocar. */
+/* Lo dejamos siempre visible, un poco más marcado al pasar el mouse.         */
+.slidev-code-copy {
+  opacity: 0.55 !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-radius: 6px;
+}
+
+.slidev-code-copy:hover {
+  opacity: 1 !important;
+}
+
+/* La barra de controles (flechas, overview, modo oscuro, descarga,     */
+/* info, ajustes) que aparece al pasar el mouse por la esquina inferior */
+/* izquierda de la presentación. */
+#page-root nav {
+  display: none !important;
+}
+
+/* ================================================================== */
+/* Agregados para "Introducción a la creación de redes neuronales".           */
+/* Mantienen la misma paleta del deck "Introducción a Python".         */
+/* ================================================================== */
+
+.prep-ambiente h1 { font-size: 1.9rem !important; margin-bottom: 0.6rem !important; }
+
+/* Diagrama centrado bajo el título */
+.fig { display: flex; justify-content: center; align-items: center; margin-top: 0.4rem; }
+.fig > * { max-width: 100%; }
+
+/* Frase corta destacada */
+.frase {
+  margin-top: 0.8rem; padding: 10px 16px; border-radius: 10px; background: #eaf2fd;
+  border-left: 5px solid #005187; color: #0a3357; font-size: 0.92rem; line-height: 1.4;
+}
+.frase.sol { background: #fff7e0; border-left-color: #f2b632; }
+.frase.alerta { background: #fdecec; border-left-color: #e05d5d; }
+
+/* Tarjetas pequeñas en cuadrícula */
+.tarjetas { display: grid; gap: 14px; margin-top: 0.6rem; }
+.tarjetas.c2 { grid-template-columns: repeat(2, 1fr); }
+.tarjetas.c3 { grid-template-columns: repeat(3, 1fr); }
+.tarjetas.c4 { grid-template-columns: repeat(4, 1fr); }
+.tarjeta {
+  padding: 14px 16px; border-radius: 14px; background: #fff; border: 1.5px solid #c4dafa;
+  box-shadow: 0 10px 24px rgba(0, 81, 135, 0.08);
+}
+.tarjeta .t { font: 700 1rem 'Poppins', sans-serif; color: #005187; margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+.tarjeta .d { font-size: 0.82rem; color: #0a3357; line-height: 1.4; }
+.tarjeta.sol { background: #fff7e0; border-color: #f2b632; }
+.tarjeta.sol .t { color: #8a5a07; }
+.tarjeta.dark { background: #0a3357; border-color: #0a3357; }
+.tarjeta.dark .t { color: #fff; } .tarjeta.dark .d { color: #c4dafa; }
+
+/* Píldoras (hiperparámetros, etiquetas) */
+.pildoras { display: flex; flex-wrap: wrap; gap: 8px; }
+.pildora { padding: 6px 14px; border-radius: 999px; background: #eaf2fd; color: #005187; font-weight: 600; font-size: 0.85rem; border: 1px solid #c4dafa; }
+.pildora.sol { background: #fff7e0; color: #8a5a07; border-color: #f2b632; }
+
+/* Número grande */
+.grande { font: 800 3rem/1 'Poppins', sans-serif; color: #005187; }
+.grande.sol { color: #d9921a; }
+
+/* Pasos de tutorial (estilo Colab, colores del deck de Python) */
+.pasos { display: flex; flex-direction: column; gap: 10px; margin-top: 0.4rem; }
+.paso-t {
+  display: flex; align-items: center; gap: 14px; padding: 10px 16px; border-radius: 12px; background: #fff;
+  border: 1.5px solid #c4dafa; box-shadow: 0 6px 16px rgba(0, 81, 135, 0.07); font-size: 0.9rem; color: #0a3357;
+}
+.paso-t .n {
+  flex: none; width: 30px; height: 30px; border-radius: 50%; background: #f2b632; color: #0a3357;
+  font: 700 0.9rem/30px 'Poppins', sans-serif; text-align: center;
+}
+
+/* Tabla resumen */
+.resumen { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 0.85rem; }
+.resumen th { background: #005187; color: #fff; font-family: 'Poppins', sans-serif; padding: 8px 12px; text-align: left; }
+.resumen th:first-child { border-top-left-radius: 10px; } .resumen th:last-child { border-top-right-radius: 10px; }
+.resumen td { padding: 8px 12px; border-bottom: 1px solid #eaf2fd; color: #0a3357; background: #fff; }
+.resumen td code { font-size: 0.78rem; }
+
+/* Cita del libro */
+.libro { display: flex; gap: 22px; align-items: center; }
+.libro .tapa {
+  flex: none; width: 150px; height: 200px; border-radius: 6px 14px 14px 6px; padding: 16px 14px;
+  background: linear-gradient(160deg, #0a3357, #005187); color: #fff; box-shadow: 0 14px 30px rgba(0, 81, 135, .3);
+  display: flex; flex-direction: column; justify-content: space-between; border-left: 8px solid #f2b632;
+}
+.libro .tapa .tt { font: 800 1.05rem/1.2 'Poppins', sans-serif; }
+.libro .tapa .aa { font-size: 0.75rem; color: #c4dafa; }
+
+/* Referencias */
+.refs { font-size: 0.78rem; line-height: 1.45; color: #0a3357; }
+.refs p { margin: 0 0 0.55rem; padding-left: 1.6rem; text-indent: -1.6rem; }
+
+/* El código dentro de columnas angostas */
+.slidev-layout.two-cols .slidev-code { font-size: 0.8rem !important; }
+.code-sm .slidev-code { font-size: 0.74rem !important; line-height: 1.5 !important; }
+
+/* Las diapositivas de contenido ocultan el texto de navegación del TOC */
+.slidev-layout .toc-mini { font-size: 0.8rem; }
+
+/* Diapositivas con código a la derecha: la columna de código es más ancha */
+.two-columns.cols-code { grid-template-columns: 5fr 7fr !important; }
+.two-columns.cols-code .slidev-code { font-size: 0.8rem !important; line-height: 1.5 !important; }
+.two-columns.cols-code .code-sm .slidev-code { font-size: 0.7rem !important; }
