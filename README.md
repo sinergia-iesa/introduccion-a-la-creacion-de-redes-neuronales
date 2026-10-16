@@ -4,6 +4,7 @@ Presentación didáctica hecha con [Slidev](https://sli.dev) sobre **redes neuro
 
 **Presentación:** https://sinergia-iesa.github.io/introduccion-a-la-creacion-de-redes-neuronales/
 
+
 ## Crédito
 
 Todo el contenido conceptual, los ejemplos numéricos y el código se basan en el **capítulo 3, «Artificial Neural Networks»**, de:
