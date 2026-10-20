@@ -9,6 +9,12 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">Cuando la respuesta es un número</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p>Predecir un <b>número continuo</b> (un precio, una longitud) en vez de una categoría.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Cuando la pregunta no es «¿cuál?» sino «¿cuánto?».</p></div>
+  <div><div class="k">Qué verás</div><p>Qué cambia en la red (solo la salida y la loss) y cómo predecir el largo del sépalo del iris.</p></div>
+</div>
+
 ---
 class: prep-ambiente
 hideInToc: true
@@ -20,6 +26,10 @@ hideInToc: true
 
 <div class="fig mt-6">
   <Salidas />
+</div>
+
+<div class="frase mt-6">
+  Con el iris: en vez de preguntar «¿qué especie es?», preguntamos «¿cuántos cm mide el sépalo?». Preparar, dividir y entrenar no cambia; solo cambian la última capa y la loss.
 </div>
 
 <Fuente texto="Basado en Karatas (2024), secciones 3.8 y 3.14" />
@@ -37,8 +47,9 @@ hideInToc: true
 
 # Predecir el largo del sépalo
 
-- 1 neurona de salida, **sin activación**
-- **MAE**: error promedio, en cm
+- Entradas: pétalo (largo y ancho) + especie en OHE. El ancho del sépalo se quitó por su baja correlación
+- 1 neurona de salida, **sin activación**: el número sale tal cual
+- **MAE**: error absoluto promedio, en cm
 
 $$
 \text{MAE} = \frac{1}{n}\sum |y - \hat{y}|

@@ -9,6 +9,12 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">Texto, huecos, correlaciones y escalas</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p>Tablas reales: con texto, celdas vacías, columnas que no aportan y números en escalas muy distintas.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Preparar bien los datos suele pesar más que la red misma. Y también hay que decidir qué datos es <b>ético</b> usar.</p></div>
+  <div><div class="k">Qué verás</div><p>One Hot Encoding, datos con huecos, correlación vs. causalidad, sesgos (dataset Adult) y estandarización.</p></div>
+</div>
+
 ---
 class: prep-ambiente
 hideInToc: true
@@ -25,6 +31,10 @@ hideInToc: true
 </div>
 
 <div class="frase mt-6">
+  Con 0, 1, 2 la red podría tratar a Virginica (2) como «más» que Setosa (0). OHE evita eso: una columna por clase, con un solo 1. Si lo usas en las <b>entradas</b>, cada categoría suma una neurona de entrada.
+</div>
+
+<div class="frase sol mt-3">
   Respuesta en OHE → <code>loss='categorical_crossentropy'</code>. En el libro, con 50 épocas, llega <b>hasta 100 %</b>.
 </div>
 
@@ -46,7 +56,7 @@ hideInToc: true
 </div>
 
 <div class="frase sol mt-5">
-  Encuéntralos con <code>data.columns[data.isnull().any()]</code>. Prueba ambas estrategias y quédate con la mejor.
+  Encuéntralos con <code>data.columns[data.isnull().any()]</code>. Si rellenas la especie con «empty», aparece una 4.ª clase: la salida pasa a <b>4 neuronas</b>. Prueba ambas estrategias y quédate con la mejor.
 </div>
 
 <Fuente texto="Basado en Karatas (2024), sección 3.11" />
@@ -65,7 +75,7 @@ hideInToc: true
 </div>
 
 <div class="frase alerta mt-4">
-  Las personas altas ganan más… pero los hombres suelen ser más altos y ganar más. La causa no es la altura.
+  Correlación: dos cosas cambian juntas. Causalidad: una provoca la otra. Las personas altas ganan más… pero los hombres suelen ser más altos y ganar más. La causa no es la altura, y la red solo ve la correlación.
 </div>
 
 <Fuente texto="Basado en Karatas (2024), sección 3.12" />
@@ -105,8 +115,9 @@ hideInToc: true
 
 # Medir las correlaciones
 
-- Suma de **|correlación|** de cada columna
-- Las más bajas son candidatas a salir
+- Suma de **|correlación|** de cada columna con todas las demás
+- En valor absoluto, para que +0.8 y −0.8 no se cancelen: ambas indican relación
+- Las sumas más bajas son candidatas a salir
 - Quitar columnas también es un **hiperparámetro**: hay que probar
 
 ::right::
@@ -174,8 +185,12 @@ hideInToc: true
 
 # Estandarizar: escalas comparables
 
-<div class="fig" style="max-width: 600px; margin: 0.2rem auto 0;">
+<div class="fig" style="max-width: 540px; margin: 0.2rem auto 0;">
   <Escalado />
+</div>
+
+<div class="frase mt-2" style="font-size: 0.85rem;">
+  Una columna en miles (ingresos) y otra en unidades (habitaciones) no influyen igual en los pesos durante el entrenamiento. Escalar las pone en rangos parecidos.
 </div>
 
 <div class="tarjetas c2">

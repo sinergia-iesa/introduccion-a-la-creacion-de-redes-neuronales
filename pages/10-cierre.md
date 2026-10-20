@@ -9,6 +9,12 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">Resumen, ejercicios y referencias</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p>Un resumen de las combinaciones clave del capítulo y sus ejercicios.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Comprobar que puedes aplicar la receta por tu cuenta, con datos que no has visto.</p></div>
+  <div><div class="k">Qué verás</div><p>La tabla resumen, 4 ejercicios (iris, hongos y diamantes) y las referencias.</p></div>
+</div>
+
 ---
 class: prep-ambiente
 hideInToc: true

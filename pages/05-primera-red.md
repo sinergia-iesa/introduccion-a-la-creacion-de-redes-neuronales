@@ -9,6 +9,12 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">K3_iris-1 paso a paso</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p>La receta convertida en un programa de Python con <b>TensorFlow</b> (Keras), <b>pandas</b> y <b>scikit-learn</b>.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Clasificar el iris de verdad y comprobar que pasar a otro problema (el vino) solo pide unos pocos cambios.</p></div>
+  <div><div class="k">Qué verás</div><p><b>K3_iris-1</b> paso a paso: cargar, preparar, dividir, construir, configurar, entrenar y probar.</p></div>
+</div>
+
 ---
 layout: two-cols
 layoutClass: gap-8 items-center cols-code
@@ -53,9 +59,9 @@ hideInToc: true
 
 # Preparar y dividir
 
-- Especie → 0, 1, 2
-- Separar **entradas** y **respuesta**
-- 80 % entrenamiento, 20 % prueba
+- `astype('category')` + `cat.codes`: especie → 0, 1, 2
+- `drop(..., axis=1)` quita la **columna** (`axis=1`) de las entradas
+- `test_size=0.2`: 120 filas para entrenar, 30 para probar
 
 ::right::
 
@@ -86,9 +92,9 @@ hideInToc: true
 
 # Construir la red
 
-- `Dense`: capa conectada con todas las anteriores
-- 32 y 64 neuronas ocultas con **sigmoide**
-- 3 salidas con **softmax**
+- `Dense`: cada neurona se conecta con todas las de la capa anterior
+- 4 entradas → 32 y 64 ocultas con **sigmoide** (tamaño elegido por ti)
+- 3 salidas con **softmax**, una por especie
 
 <div class="frase sol">
   El libro usa <code>input_dim=4</code>; <code>tf.keras.Input</code> es la forma actual equivalente.
@@ -124,6 +130,10 @@ $$
 \text{softmax}(y_i) = \frac{e^{y_i}}{\sum_j e^{y_j}}
 $$
 
+<div class="frase mt-2">
+  Ejemplo: e<sup>2.0</sup> / (e<sup>2.0</sup> + e<sup>1.0</sup> + e<sup>0.1</sup>) = 7.39 / 11.21 ≈ <b>0.66</b>. El valor más alto se queda con la mayor probabilidad, y las tres suman exactamente 1.
+</div>
+
 <Fuente texto="Basado en Karatas (2024), sección 3.8 (mismo ejemplo: 2.0, 1.0, 0.1)" />
 
 ---
@@ -140,8 +150,12 @@ hideInToc: true
 # Configurar el aprendizaje
 
 - **optimizer**: cómo se ajustan los pesos → `adam`
-- **loss**: qué tan lejos está de la respuesta
+- **loss**: qué tan lejos está de la respuesta. `sparse_` porque la respuesta viene como 0, 1, 2
 - **metrics**: % de aciertos → `accuracy`
+
+<div class="frase">
+  Si la especie correcta recibió 0.7, la loss es −log(0.7) ≈ 0.36. Cuanto más se acerque a 1, más baja la loss.
+</div>
 
 $$
 \text{accuracy} = \frac{\text{aciertos}}{\text{total}}
@@ -179,6 +193,9 @@ test_loss, test_acc = model.evaluate(test_data, test_col)
 print('Test accuracy:', test_acc)
 ```
 
+- `fit`: recorre las 120 filas **30 veces** (épocas) y ajusta los pesos
+- `evaluate`: una pasada por las 30 filas de prueba, sin ajustar nada
+
 <div class="frase sol">
   Libro: <b>casi 80 %</b> con 30 épocas. Prueba con más épocas: lo que importa es la <b>prueba</b>.
 </div>
@@ -204,7 +221,8 @@ hideInToc: true
 
 - Otro **archivo** y **separador** (`;`)
 - Otra **columna** a predecir: `quality`
-- Otra red: **11 entradas** y **11 salidas** (calidad 0–10)
+- Otra red: **11 entradas** (12 columnas − 1 a predecir) y **11 salidas** (calidad 0–10)
+- Todo lo demás queda igual
 
 ::right::
 

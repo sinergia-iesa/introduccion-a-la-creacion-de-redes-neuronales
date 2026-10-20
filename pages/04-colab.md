@@ -9,6 +9,12 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">Los cuadernos y los datos del capítulo, en Google Colab</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p><b>Google Colab</b>: cuadernos de Python que se ejecutan en el navegador, sin instalar nada en tu computadora.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Correr los programas del capítulo con sus datos y experimentar cambiando el código.</p></div>
+  <div><div class="k">Qué verás</div><p>Los 9 cuadernos y los 5 archivos de datos, cómo guardar tu copia, subir un CSV y leerlo con pandas.</p></div>
+</div>
+
 ---
 class: prep-ambiente
 hideInToc: true

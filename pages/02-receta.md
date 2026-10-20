@@ -9,6 +9,19 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">Los mismos pasos para cualquier problema</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p>Los pasos que se siguen <b>siempre</b> en aprendizaje supervisado: tenemos una tabla de ejemplos y, para cada fila, la respuesta correcta.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Para no perderse: el mismo orden sirve para el iris, para el vino o para cualquier tabla nueva.</p></div>
+  <div><div class="k">Qué verás</div><p>Los seis pasos, mirando la red como una <b>caja negra</b>: solo qué entra y qué sale. Por dentro la abrimos en la sección 3.</p></div>
+</div>
+
+<div class="glosario">
+  <span><b>entrenar</b>: la red ve ejemplos y se corrige</span>
+  <span><b>probar</b>: se mide con ejemplos que no vio</span>
+  <span><b>época</b>: una pasada por todos los datos de entrenamiento</span>
+  <span><b>parámetros</b>: los valores internos que la red ajusta</span>
+</div>
+
 ---
 class: prep-ambiente
 hideInToc: true
@@ -40,8 +53,8 @@ hideInToc: true
 # La red solo entiende números
 
 - Las medidas ya son números
-- La especie es **texto**: hay que convertirla
-- Una forma simple: un número por clase
+- La especie es **texto**: con «Iris setosa» no se puede multiplicar ni sumar
+- Una forma simple: un número por clase (Setosa → 0, Versicolor → 1, Virginica → 2)
 
 ::right::
 
@@ -59,8 +72,12 @@ clicks: 2
 
 # De una tabla salen cuatro
 
-<div class="fig" style="max-width: 760px; margin: 0 auto;">
+<div class="fig" style="max-width: 660px; margin: 0 auto;">
   <DivisionTabla :step="$clicks" />
+</div>
+
+<div class="frase mt-2">
+  Se corta por <b>filas</b> (120 entrenar / 30 probar) y por <b>columnas</b> (4 entradas / 1 respuesta). ¿Cuántas filas y columnas tiene cada tabla?
 </div>
 
 <Fuente fig="3.2" />
@@ -78,6 +95,10 @@ hideInToc: true
   <CajaNegra modo="entrenar" />
 </div>
 
+<div class="frase mt-4">
+  Por cada fila, la red propone una especie. Se compara con la real y la diferencia se usa para ajustar sus parámetros. Recorrer la tabla completa una vez es una <b>época</b>, y se repite muchas veces hasta que el error baje.
+</div>
+
 <Fuente fig="3.3 y 3.4" />
 
 ---
@@ -91,6 +112,10 @@ hideInToc: true
 
 <div class="fig" style="max-width: 760px; margin: 0 auto;">
   <CajaNegra modo="probar" />
+</div>
+
+<div class="frase mt-4">
+  Ahora la red ya no se corrige: pasa una sola vez por las 30 filas de prueba y <b>tú</b> decides si el resultado alcanza. Si no, vuelves al inicio de la receta (más datos, otras columnas, otra red…).
 </div>
 
 <Fuente fig="3.5" />
@@ -109,7 +134,7 @@ hideInToc: true
 </div>
 
 <div class="frase alerta">
-  Si la IA se equivoca, quien no sabe de flores no lo nota. Una IA rara vez es 100 % confiable.
+  Si la IA se equivoca, quien no sabe de flores no lo nota. Una IA rara vez es 100 % confiable: compárala con una persona. Si un experto acierta el 95 %, esa es la meta.
 </div>
 
 <Fuente fig="3.6" />

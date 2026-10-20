@@ -9,6 +9,12 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">Hiperparámetros y overfitting</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p>Ajustar las decisiones que la red <b>no</b> aprende sola: capas, neuronas, activación, épocas… Se llaman <b>hiperparámetros</b>.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Subir el porcentaje de aciertos en la prueba sin que la red se limite a memorizar los datos.</p></div>
+  <div><div class="k">Qué verás</div><p>Qué perillas hay, cómo reconocer el overfitting, por qué mezclar los datos y por qué en producción se usan tres conjuntos.</p></div>
+</div>
+
 ---
 class: prep-ambiente
 hideInToc: true
@@ -31,7 +37,7 @@ hideInToc: true
   <div class="tarjeta"><div class="t">relu</div><Sigmoide tipo="relu" /></div>
 </div>
 
-<div class="frase sol">Cambiar → entrenar → probar → repetir.</div>
+<div class="frase sol">Los pesos los aprende la red; los hiperparámetros los eliges tú. Por eso se buscan probando: cambiar → entrenar → probar → repetir.</div>
 
 <Fuente texto="Basado en Karatas (2024), sección 3.9 · más activaciones en keras.io/api/layers/activations" />
 
@@ -114,6 +120,10 @@ hideInToc: true
   <div class="tarjeta"><div class="t" style="color:#005187">Entrenamiento</div><div class="d">Ajusta los <b>pesos</b></div></div>
   <div class="tarjeta sol"><div class="t">Prueba</div><div class="d">Ajustas los <b>hiperparámetros</b> mirando este resultado</div></div>
   <div class="tarjeta"><div class="t" style="color:#2e9e6a">Evaluación</div><div class="d">Prueba final con datos que <b>nadie</b> usó para afinar</div></div>
+</div>
+
+<div class="frase mt-4">
+  Si afinas mirando siempre la prueba, los hiperparámetros pueden quedar hechos a la medida de esos datos. La evaluación confirma que la red también funciona con datos nuevos.
 </div>
 
 <Fuente texto="Basado en Karatas (2024), sección 3.9" />

@@ -25,7 +25,7 @@ withDefaults(defineProps<{ step?: number }>(), { step: 3 })
     </div>
     <div :class="['ar', { hide: step < 3 }]">→</div>
     <div :class="['col out', { hide: step < 3 }]">
-      <div class="prob">[0.96, 0.03, 0.00]</div>
+      <div class="prob">[0.93, 0.07, 0.00]</div>
       <div class="mini">argmax → 0</div>
       <div class="mini">inverse_transform</div>
       <div class="res">Setosa</div>

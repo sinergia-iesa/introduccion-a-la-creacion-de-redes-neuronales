@@ -9,6 +9,12 @@ class: prep-ambiente prep-divider text-center
 
 <div class="prep-subtitle">Guardar, cargar y predecir</div>
 
+<div class="intro">
+  <div><div class="k">Qué es</div><p><b>Desplegar</b>: guardar la red ya entrenada y usarla después con datos nuevos, sin volver a entrenar.</p></div>
+  <div><div class="k">Para qué sirve</div><p>Es el objetivo final: que cualquiera mida una flor y obtenga la especie.</p></div>
+  <div><div class="k">Qué verás</div><p>Qué archivos hay que guardar, cómo cargarlos y cómo pasar de las probabilidades al nombre de la especie.</p></div>
+</div>
+
 ---
 class: prep-ambiente
 hideInToc: true
@@ -43,7 +49,8 @@ hideInToc: true
 # Guardar
 
 - `LabelEncoder` recuerda qué número es cada especie
-- El escalador recuerda **media y desviación**
+- El escalador recuerda **media y desviación** del entrenamiento
+- Los datos nuevos deben pasar por exactamente la misma conversión, por eso se guardan los tres
 
 <div class="frase sol">
   El libro guarda <code>model1.h5</code>; hoy Keras recomienda <code>.keras</code>.
@@ -84,7 +91,7 @@ hideInToc: true
 # Cargar y predecir
 
 - `transform`, **no** `fit_transform`: el mismo escalador
-- `argmax` → posición de la probabilidad más alta
+- `argmax` → posición de la probabilidad más alta (93 % → posición 0)
 - `inverse_transform` → de número a nombre
 
 ::right::
@@ -98,7 +105,7 @@ data = s_scaler.transform(data)
 le = joblib.load('le1.joblib')
 
 model = tf.keras.models.load_model('model1.keras')
-pred = model.predict(data)      # [[0.96 0.03 0.00]]
+pred = model.predict(data)      # [[0.93 0.07 0.00]]
 
 num = np.argmax(pred)           # 0
 print(le.inverse_transform([num]))   # ['Setosa']
